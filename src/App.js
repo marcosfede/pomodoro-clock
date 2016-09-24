@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import '../node_modules/flipclock/compiled/flipclock.css'
 import './App.css'
+// import './components/FlipClock.css'
 import Topbar from './components/Topbar'
 import Controls from './components/Controls'
 import { Card, CardActions, CardText } from 'material-ui/Card'
@@ -7,7 +9,7 @@ import FlatButton from 'material-ui/FlatButton'
 import $ from 'jquery'
 window.$ = $
 window.jQuery = $
-let FlipClock = require('../node_modules/flipclock/compiled/flipclock.min')
+window.FlipClock = require('../node_modules/flipclock/compiled/flipclock')
 
 const styles = {
   App: {
@@ -36,9 +38,11 @@ class App extends Component {
   }
 
   componentDidMount () {
-    if (Notification.permission !== 'granted')
+    if (Notification.permission !== 'granted') {
       Notification.requestPermission()
-    $('#flipclock').FlipClock()
+    }
+    this.initCounter()
+    clock.stop()
   }
   slideUp = () => {
     $('#text').slideUp(300)
@@ -47,15 +51,32 @@ class App extends Component {
     $('#text').slideDown(300)
   }
 
+  initCounter = () => {
+    // FlipClock.FedeClockFace = FlipClock.MinuteCounterFace.extend({
+    //   showSeconds: true,
+    // })
+    window.clock = $('.countdown').FlipClock(this.state.timer,{
+      countdown: true,
+      clockFace: 'MinuteCounter'
+    })
+
+  }
+
   playPause = () => {
     if (this.state.status === 'stopped') {
       this.setState({status: 'running', timer: this.state.sessionTime})
+      clock.start()
       this.timeout()
     }
     else if (this.state.status === 'paused' && this.state.timer > 0) {
       this.setState({status: 'running'})
+      clock.start()
       this.timeout()
-    }else { this.setState({status: 'paused'})}
+    }
+    else {
+      this.setState({status: 'paused'})
+      clock.stop()
+    }
   }
   stopOrTimeout = () => {
     // check if the user hasn't stoped the timer
@@ -93,6 +114,8 @@ class App extends Component {
   }
   resetTimer = () => {
     this.setState({timer: this.state.sessionTime, status: 'stopped', currentBlock: 'session'})
+    clock.stop()
+    clock.setTime(this.state.sessionTime)
     window.setTimeout(() => this.setState({timer: this.state.sessionTime}), 1000)
   }
   secToMinutes = (sec) => {
@@ -130,7 +153,11 @@ class App extends Component {
       <div style={styles} id='App' className='App'>
         <Topbar/>
         <div id='content'>
-          <div id="flipclock"></div>
+          <div className="countdown-wrapper">
+            <div className="countdown flip-clock-wrapper">
+
+            </div>
+          </div>
           <Card id='card' zDepth={4}>
             <CardText id='timer'>
               <span>{this.secToMinutes(this.state.timer)}</span>

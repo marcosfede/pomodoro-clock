@@ -1,4 +1,3 @@
-@import 'https://fonts.googleapis.com/css?family=Fira+Mono';
 
 #App {
     height: 100%;
@@ -25,7 +24,6 @@
 }
 #timer span{
   font-size: 4em;
-  font-family: "Fira Mono"
 }
 .controls {
   display : flex !important;
