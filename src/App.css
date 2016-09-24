@@ -1,0 +1,46 @@
+@import 'https://fonts.googleapis.com/css?family=Fira+Mono';
+
+#App {
+    height: 100%;
+
+}
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+    margin-top: 10vh;
+}
+#card {
+  width: 60%;
+  background-color: #FDF6E3 !important;
+}
+#timer {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#timer span{
+  font-size: 4em;
+  font-family: "Fira Mono"
+}
+.controls {
+  display : flex !important;
+  justify-content: space-between !important;
+  height: 36px !important;
+  align-items: center !important;
+}
+.control-button {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+}
+.controlbox {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100px;
+}
