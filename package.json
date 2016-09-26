@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "css-loader": "^0.25.0",
     "gh-pages": "^0.11.0",
     "imports-loader": "^0.6.5",
     "react-scripts": "0.2.2",
-    "standard": "^8.0.0"
+    "standard": "^8.0.0",
+    "style-loader": "^0.13.1"
   },
   "dependencies": {
     "flipclock": "^0.7.8",

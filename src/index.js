@@ -5,8 +5,10 @@ import './index.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
+require('!style!css!./FlipClock/flipclock.css')
+
+injectTapEventPlugin();
 const muiTheme = getMuiTheme({
   palette: {
     accent1Color: '#55486E',
