@@ -4,10 +4,10 @@ import Topbar from './components/Topbar'
 import Controls from './components/Controls'
 import { Card, CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
-import $ from 'jquery'
+let $ = require("expose?$!jquery");
 // window.$ = $
 // window.jQuery = $
-require("static/js/FlipClock/flipclock")
+require("./FlipClock/flipclock")
 const styles = {
   App: {
   }
