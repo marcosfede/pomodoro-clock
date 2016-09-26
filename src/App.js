@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './App.css'
-// import './components/FlipClock.css'
 import Topbar from './components/Topbar'
 import Controls from './components/Controls'
 import { Card, CardActions, CardText } from 'material-ui/Card'
@@ -8,7 +7,8 @@ import FlatButton from 'material-ui/FlatButton'
 import $ from 'jquery'
 window.$ = $
 window.jQuery = $
-window.FlipClock = require('../FlipClock/dev/dist/flipclock')
+window.FlipClock = require('../FlipClock/flipclock')
+// window.FlipClock = require('../FlipClock/dev/dist/flipclock')
 
 const styles = {
   App: {
