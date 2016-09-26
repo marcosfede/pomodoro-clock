@@ -138,7 +138,7 @@ class App extends Component {
 
   increaseSession = () => {
     let newtime = this.state.sessionTime +1
-    this.setState({sessionTime: newtime})
+    if (newtime<=60) this.setState({sessionTime: newtime})
   }
   decreaseSession = () => {
     let newtime = this.state.sessionTime -1
@@ -146,7 +146,7 @@ class App extends Component {
   }
   increaseBreak = () => {
     let newtime = this.state.breakTime +1
-    this.setState({breakTime: newtime})
+    if (newtime <= 40) this.setState({breakTime: newtime})
   }
   decreaseBreak= () => {
     let newtime = this.state.breakTime -1
