@@ -11,11 +11,13 @@ require('!style!css!./FlipClock/flipclock.css')
 injectTapEventPlugin();
 const muiTheme = getMuiTheme({
   palette: {
-    accent1Color: '#55486E',
+    accent1Color: '#01579B',
     primary1Color: '#55486E',
-    textColor: '#55486E'
+    textColor: '#424242'
   }
 })
+
+
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>

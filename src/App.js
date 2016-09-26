@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Topbar from './components/Topbar'
-import Controls from './components/Controls'
+import Controls from './components/Controls.js'
 import { Card, CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 let $ = require("expose?$!jquery");
@@ -28,9 +28,10 @@ class App extends Component {
       sessionTime: defaults.sessionTime,
       breakTime: defaults.breakTime,
       timer: defaults.sessionTime,
-      toggledSound: false,
-      toggledNotifications: false,
-      toggledRepeat: false
+      toggledSound: true,
+      toggledNotifications: true,
+      toggledRepeat: false,
+      toggledPause: false,
     }
   }
 
@@ -39,6 +40,9 @@ class App extends Component {
       Notification.requestPermission()
     }
     this.initCounter()
+    $('#text').slideDown(500)
+    $('#slide').slideUp(500)
+
   }
 
   initCounter = () => {
@@ -62,7 +66,13 @@ class App extends Component {
       this.setState({currentBlock: 'break'})
       this.playSound()
       this.showNotification()
-      window.clock.setFaceValue(this.state.breakTime*60).start()
+      window.clock.setFaceValue(this.state.breakTime*60)
+      if (this.state.toggledPause){
+        this.setState({status: 'paused'})
+      }
+      else {
+        window.clock.start()
+      }
     }
     // if in break and repeat, loop to session again
     else if (this.state.currentBlock === 'break') {
@@ -108,11 +118,11 @@ class App extends Component {
       if (Notification.permission !== 'granted') {
         Notification.requestPermission()}else {
         var notification = new Notification('Time is up!', {
-          icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
-          body: 'Time is up!'
+          icon: 'https://cdn0.iconfinder.com/data/icons/feather/96/clock-128.png',
+          body: this.state.currentBlock === 'session' ? 'Back to work' : 'Take a break'
         })
         notification.onclick = function () {
-          window.open('')
+          window.open('#')
         }
       }
     }
@@ -120,6 +130,7 @@ class App extends Component {
   handleSound = (event, toggle) => this.setState({ toggledSound: toggle})
   handleNotifications = (event, toggle) => this.setState({ toggledNotifications: toggle})
   handleRepeat = (event, toggle) => this.setState({ toggledRepeat: toggle})
+  handlePause = (event, toggle) => this.setState({ toggledPause: toggle})
   handleFormSession = (event, value) => {
     this.setState({sessionTime: value})
   }
@@ -146,17 +157,36 @@ class App extends Component {
 
 
   render () {
+    let renderText = () => {
+      if (this.state.status === 'running') {
+        $('#text').slideUp(500)
+        $('#slide').slideDown(500)
+        if (this.state.currentBlock === 'session'){
+          return 'Focus Time!'
+        }
+        else if (this.state.currentBlock === 'break'){
+          return 'You deserve a break'
+        }
+      }
+      else {
+        $('#text').slideDown(500)
+        $('#slide').slideUp(500)
+      }
+    }
     return (
       <div style={styles} id='App' className='App'>
         <Topbar/>
         <div id='content'>
-          <Card id='card' zDepth={4}>
+          <Card id='card' zDepth={2}>
             <CardText id='timer'>
               <div className='countdown-wrapper'>
                 <div className='countdown flip-clock-wrapper'>
                 </div>
               </div>
             </CardText>
+            <div id="slide">
+              {renderText()}
+            </div>
             <Controls
               sessionTime={this.state.sessionTime}
               breakTime={this.state.breakTime}
@@ -167,13 +197,18 @@ class App extends Component {
               toggledSound={this.state.toggledSound}
               toggledNotifications={this.state.toggledNotifications}
               toggledRepeat={this.state.toggledRepeat}
+              toggledPause={this.state.toggledPause}
               handleSound={this.handleSound}
               handleNotifications={this.handleNotifications}
               handleFormSession={this.handleFormSession}
               handleFormBreak={this.handleFormBreak}
-              handleRepeat={this.handleRepeat} />
+              handleRepeat={this.handleRepeat}
+              handlePause={this.handlePause} />
             <CardActions>
-              <FlatButton label={this.state.status === 'running' ? 'Pause' : 'Start'} onClick={this.playPause} />
+              <FlatButton
+                label={this.state.status === 'running' ? 'Pause'
+                  : this.state.status === 'paused' ? 'continue'
+                  : 'Start'} onClick={this.playPause} />
               <FlatButton label='Reset' onClick={this.resetTimer} />
             </CardActions>
           </Card>

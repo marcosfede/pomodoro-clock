@@ -14,14 +14,15 @@
     margin-top: 10vh;
 }
 #card {
-  width: 60%;
-  background-color: #FDF6E3 !important;
+  width: 500px;
+  background-color: #E8E8EA !important;
 }
 #timer {
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 #timer span{
   font-size: 4em;
@@ -51,6 +52,7 @@
   width: 36px;
 }
 .slider-wrapper {
+  background-color: #E8E8EA;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,10 +61,18 @@
   margin: 0 0 !important;
 }
 .slider {
-  width: 100%;
+  width: 80%;
 }
 .slider>div {
   margin: 0 !important;
   width: 300px;
   height: 36px;
+}
+#slide {
+  font-size: 2em;
+  width: 500px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

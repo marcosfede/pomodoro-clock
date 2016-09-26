@@ -7,7 +7,6 @@ import Slider from 'material-ui/Slider';
 
 
 let styles = {
-  backgroundColor: "#FDF6E3",
 }
 
 
@@ -21,7 +20,7 @@ const Controls = (props) => (
       <div className="slider-wrapper">
         <Slider
           className="slider"
-          min={0}
+          min={1}
           max={60}
           step={1}
           defaultValue={30}
@@ -50,8 +49,8 @@ const Controls = (props) => (
       <div className="slider-wrapper">
         <Slider
           className="slider"
-          min={0}
-          max={60}
+          min={1}
+          max={40}
           step={1}
           defaultValue={30}
           value={props.breakTime}
@@ -78,7 +77,10 @@ const Controls = (props) => (
       <Toggle toggled={props.toggledNotifications} onToggle={props.handleNotifications} label='Notifications' />
     </div>
     <div className='controls'>
-      <Toggle toggled={props.toggledRepeat} onToggle={props.handleRepeat} label='Repeat' />
+      <Toggle toggled={props.toggledPause} onToggle={props.handlePause} label='Pause after session' />
+    </div>
+    <div className='controls'>
+      <Toggle toggled={props.toggledRepeat} onToggle={props.handleRepeat} label='Repeat indefinitely' />
     </div>
   </CardText>
 )

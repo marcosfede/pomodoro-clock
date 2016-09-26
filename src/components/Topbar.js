@@ -10,7 +10,6 @@ const styles = {
     cursor: 'pointer',
   },
   bar: {
-    'backgroundColor': "#55486E"
   },
   github: {
     margin: 12,
