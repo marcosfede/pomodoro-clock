@@ -8,7 +8,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 60%;
+    min-width: 600px;
+    width: 100%;
     margin: auto;
     margin-top: 10vh;
 }
@@ -38,7 +39,30 @@
   min-height: 36px !important;
 }
 .controlbox {
+  height: 36px;
   display: inline-flex;
-  justify-content: space-between;
-  width: 100px;
+  justify-content: flex-end !important;
+  width: 300px;
+}
+#sessionForm, #breakForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+}
+.slider-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 36px;
+  margin: 0 0 !important;
+}
+.slider {
+  width: 100%;
+}
+.slider>div {
+  margin: 0 !important;
+  width: 300px;
+  height: 36px;
 }
