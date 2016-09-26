@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton'
 import $ from 'jquery'
 window.$ = $
 window.jQuery = $
-window.FlipClock = require('../FlipClock/flipclock')
+window.FlipClock = require('../node_modules/flipclock/compiled/flipclock.min')
 // window.FlipClock = require('../FlipClock/dev/dist/flipclock')
 
 const styles = {
