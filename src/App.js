@@ -5,8 +5,6 @@ import Controls from './components/Controls.js'
 import { Card, CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 let $ = require("expose?$!jquery");
-// window.$ = $
-// window.jQuery = $
 require("./FlipClock/flipclock")
 const styles = {
   App: {
