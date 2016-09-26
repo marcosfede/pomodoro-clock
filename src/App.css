@@ -1,7 +1,6 @@
 
 #App {
     height: 100%;
-
 }
 #content {
     display: flex;
@@ -14,6 +13,7 @@
     margin-top: 10vh;
 }
 #card {
+  margin-top: 0;
   width: 500px;
   background-color: #E8E8EA !important;
 }
@@ -26,6 +26,20 @@
 }
 #timer span{
   font-size: 4em;
+}
+#slide {
+  font-size: 2em;
+  width: 500px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#sessionForm, #breakForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
 }
 .controls {
   display : flex !important;
@@ -45,12 +59,6 @@
   justify-content: flex-end !important;
   width: 300px;
 }
-#sessionForm, #breakForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-}
 .slider-wrapper {
   background-color: #E8E8EA;
   display: flex;
@@ -68,11 +76,35 @@
   width: 300px;
   height: 36px;
 }
-#slide {
-  font-size: 2em;
-  width: 500px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.flipclock-label {
+  display: none !important;
+}
+@media screen
+  and (max-device-width: 414px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  #card {
+    width: 95vw;
+  }
+  #content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      min-width: 320px;
+      width: 100%;
+      margin: 0;
+      margin-top: 10vh;
+  }
+  .slider {
+    width: 80%;
+  }
+  .slider-wrapper {
+    width: 80px;
+  }
+  .slider>div {
+    width: 80px;
+  }
+  .flip, .play {
+    width: 50px !important;
+  }
 }
